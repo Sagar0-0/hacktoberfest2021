@@ -1,0 +1,46 @@
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//         creating new list;
+        ListNode head=null;
+//      this will be pointer to new list;
+        ListNode ptr=null;
+
+        int num1,num2,carry=0,value;
+//         while both list pointers are not null;
+        while(l1!=null || l2!=null){
+//             number from 1st list;
+            num1= l1==null? 0:l1.val;
+//             num from 2nd;
+            num2= l2==null? 0:l2.val;
+//             adding to get a value;
+            value=num1+num2+carry;
+//          if greater than 9 then carry will be 1[carry cant be greater than 1 in this question]
+            if(value>9){
+                value=value-10;
+                carry=1;
+            }
+//             if less than 10 then carry will be 0;
+            else{
+                carry=0;
+            }
+//             adding value to new list
+            if(head==null){
+                head=new ListNode(value);
+                ptr=head;
+            }else{
+                ptr.next=new ListNode(value);
+                ptr=ptr.next;
+            }
+//             moving our given pointers
+            l1 = l1 != null ? l1.next : null;
+            l2 = l2 != null ? l2.next : null;
+            
+        }
+//         {last case}
+//         check if there is carry:
+//            if yes then add it to new node.
+        if(carry!=0){
+            ptr.next=new ListNode(carry);
+        }
+        
+        return head;
+    }
